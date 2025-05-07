@@ -18,7 +18,8 @@ const changesSlider = new Swiper('.home_slider', {
         },
 
         768: {
-            slidesPerView: 2,
+            slidesPerView: "auto",
+            spaceBetween: 20,
         },
 
         0: {
@@ -65,7 +66,26 @@ const footer = new Swiper('.footer_slider', {
     },
     freeMode: true,
     simulateTouch: false,
+    breakpoints: {
+        320: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+        },
+        480: {
+            slidesPerView: 3,
+            spaceBetween: 15,
+        },
+        768: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+        },
+        1024: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+        }
+    }
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     jQuery(document.body).on('added_to_cart', function(event, fragments, cart_hash, $button) {
@@ -151,4 +171,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     firstAccordionItem.classList.add('active');
     firstAccordionContent.style.display = 'block';
+});
+
+document.querySelector('.navbar__toggle').addEventListener('click', function () {
+    document.querySelector('.navbar__menu__items').classList.toggle('active');
 });
