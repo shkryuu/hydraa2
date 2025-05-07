@@ -516,6 +516,15 @@ add_shortcode('wishlist_button', function($atts) {
     return ob_get_clean();
 });
 
+register_nav_menus(array(
+    'footer-menu' => __('Footer Menu'),
+));
+function custom_pre_get_posts($query) {
+    if (!is_admin() && $query->is_main_query() && is_post_type_archive('product')) {
+        $query->set('paged', get_query_var('paged'));
+    }
+}
+add_action('pre_get_posts', 'custom_pre_get_posts');
 
 
 

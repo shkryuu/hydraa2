@@ -2,6 +2,14 @@
 defined('ABSPATH') || exit;
 get_header('shop');
 ?>
+<?php
+// Acestea sunt câmpurile ACF pentru produs
+$descriere = get_field('descriere_produs');
+$loc = get_field('selectarea_locului');
+$udare = get_field('udarea');
+$sol = get_field('selectarea_solului');
+?>
+
 
     <section class="breadcrumb_sec">
         <div class="container">
@@ -11,7 +19,9 @@ get_header('shop');
 
     <section class="single_product mg-50">
         <div class="container">
-            <?php while ( have_posts() ) : the_post(); global $product; ?>
+            <?php while (have_posts()) :
+            the_post();
+            global $product; ?>
             <div class="row gy-0 gx-0">
                 <div class="col-md-6 product_left">
                     <?php
@@ -32,7 +42,8 @@ get_header('shop');
                             <?php if ($featured_image): ?>
                                 <div class="swiper-slide">
                                     <a href="<?php echo esc_url($featured_image); ?>" data-fancybox="gallery">
-                                        <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr(get_the_title($product_id)); ?>">
+                                        <img src="<?php echo esc_url($featured_image); ?>"
+                                             alt="<?php echo esc_attr(get_the_title($product_id)); ?>">
                                     </a>
                                 </div>
                             <?php endif; ?>
@@ -41,7 +52,8 @@ get_header('shop');
                                 <?php $image_url = wp_get_attachment_image_url($image_id, 'full'); ?>
                                 <div class="swiper-slide">
                                     <a href="<?php echo esc_url($image_url); ?>" data-fancybox="gallery">
-                                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title($product_id)); ?>">
+                                        <img src="<?php echo esc_url($image_url); ?>"
+                                             alt="<?php echo esc_attr(get_the_title($product_id)); ?>">
                                     </a>
                                 </div>
                             <?php endforeach; ?>
@@ -54,14 +66,16 @@ get_header('shop');
                             <div class="swiper-wrapper">
                                 <?php if ($featured_image): ?>
                                     <div class="swiper-slide">
-                                        <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr(get_the_title($product_id)); ?>">
+                                        <img src="<?php echo esc_url($featured_image); ?>"
+                                             alt="<?php echo esc_attr(get_the_title($product_id)); ?>">
                                     </div>
                                 <?php endif; ?>
 
                                 <?php foreach ($gallery_images as $image_id): ?>
                                     <?php $image_url = wp_get_attachment_image_url($image_id, 'thumbnail'); ?>
                                     <div class="swiper-slide">
-                                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title($product_id)); ?>">
+                                        <img src="<?php echo esc_url($image_url); ?>"
+                                             alt="<?php echo esc_attr(get_the_title($product_id)); ?>">
                                     </div>
                                 <?php endforeach; ?>
                             </div>
@@ -73,9 +87,49 @@ get_header('shop');
                     <div class="product-price">
                         <?php echo $product->get_price_html(); ?>
                     </div>
+                    <?php if ($descriere): ?>
+                        <div class="acf-content">
+                            <?php echo $descriere; ?>
+                        </div>
+                    <?php endif; ?>
                     <div class="product-short-description">
                         <?php echo apply_filters('woocommerce_short_description', $post->post_excerpt); ?>
                     </div>
+                    <?php
+                    $precomanda = get_field('afiseaza_precomanda');
+
+                    if ($precomanda === 'da') : ?>
+                        <div class="precomanda-box">
+                            <p class="precomanda-title">Precomandă la număr:</p>
+                            <a href="tel:+37378363555" class="precomanda-phone">+373 78 363 555</a>
+                            <br><br>
+                            <a href="https://t.me/+37378363555" target="_blank" class="precomanda-telegram">
+    <span class="telegram-icon">
+        <!-- SVG-ul Telegram -->
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g>
+                <path d="M15 28.125C22.2487 28.125 28.125 22.2487 28.125 15C28.125 7.75126 22.2487 1.875 15 1.875C7.75126 1.875 1.875 7.75126 1.875 15C1.875 22.2487 7.75126 28.125 15 28.125Z"
+                      fill="url(#paint0_linear_199_3572)"/>
+                <path d="M21.5499 9.57075C21.6667 8.81561 20.9488 8.21958 20.2774 8.51437L6.90452 14.3857C6.42303 14.5972 6.45825 15.3265 6.95763 15.4855L9.7154 16.3638C10.2418 16.5314 10.8117 16.4447 11.2714 16.1272L17.4891 11.8315C17.6766 11.702 17.8809 11.9686 17.7207 12.1337L13.2451 16.7481C12.8109 17.1957 12.8971 17.9542 13.4194 18.2817L18.4303 21.424C18.9923 21.7764 19.7153 21.4224 19.8204 20.7432L21.5499 9.57075Z"
+                      fill="white"/>
+            </g>
+            <defs>
+                <linearGradient id="paint0_linear_199_3572" x1="15" y1="1.875" x2="15" y2="28.125"
+                                gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#37BBFE"/>
+                    <stop offset="1" stop-color="#007DBB"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    </span>
+                                <span class="telegram-label">Scrie-ne pe Telegram</span>
+                            </a>
+
+
+                        </div>
+                    <?php endif; ?>
+
+
                     <div class="cards_product">
                         <div class="card_item">
                             <p>40 cm / 15+</p>
@@ -111,279 +165,82 @@ get_header('shop');
                         <p class="fw-bold" id="total-price-single"></p>
                     </div>
 
-                    <div class="question">
-                        <div class="row gy-0 gx-0">
-                            <div class="col-sm-12 col-12 col-lg-12 faq-accordion">
-                                <div class="accordion-dental">
-                                    <div class="accordion-item">
-                                        <div class="accordion-header">
-                                            <div class="quest d-flex gap-3">
-                                                <img src="/wp-content/uploads/2025/04/soil-temperature-field-svgrepo-com-1.svg" alt="">
-                                                <h4>Selectarea locului</h4>
+                    <?php if ($loc || $udare || $sol): ?>
+                        <div class="question">
+                            <div class="row gy-0 gx-0">
+                                <div class="col-sm-12 col-12 col-lg-12 faq-accordion">
+                                    <div class="accordion-dental">
+
+                                        <?php if ($loc): ?>
+                                            <div class="accordion-item">
+                                                <div class="accordion-header">
+                                                    <div class="quest d-flex gap-3">
+                                                        <img src="/wp-content/uploads/2025/04/soil-temperature-field-svgrepo-com-1.svg"
+                                                             alt="">
+                                                        <h4>Selectarea locului</h4>
+                                                    </div>
+                                                    <span class="toggle-icon">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-tabs.svg"
+                                         alt="">
+                                </span>
+                                                </div>
+                                                <div class="accordion-content">
+                                                    <?php echo $loc; ?>
+                                                </div>
                                             </div>
-                                            <span class="toggle-icon"><img
-                                                        src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-tabs.svg"
-                                                        alt=""></span>
-                                        </div>
-                                        <div class="accordion-content">
-                                            <p>
-                                                Selectarea locului pentru plantare Hortensia nu este o planta foarte
-                                                pretentioasa, comparativ cu alte plante de gradina sau apartament.
-                                                Insa are nevoie de anumite conditii de clima pentru a creste
-                                                viguroasa si a inflori frumos. Primul pas in acest sens este gasirea
-                                                locului ideal pentru a o planta. Arbustul de hortensie iubeste
-                                                lumina soarelui, insa numai dimineata, cand nu arde cu toata
-                                                puterea.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <div class="accordion-header">
-                                            <div class="quest d-flex gap-3">
-                                                <img src="/wp-content/uploads/2025/04/watering-svgrepo-com-1.svg" alt="">
-                                                <h4>Udarea</h4>
+                                        <?php endif; ?>
+
+                                        <?php if ($udare): ?>
+                                            <div class="accordion-item">
+                                                <div class="accordion-header">
+                                                    <div class="quest d-flex gap-3">
+                                                        <img src="/wp-content/uploads/2025/04/watering-svgrepo-com-1.svg"
+                                                             alt="">
+                                                        <h4>Udarea</h4>
+                                                    </div>
+                                                    <span class="toggle-icon">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-tabs.svg"
+                                         alt="">
+                                </span>
+                                                </div>
+                                                <div class="accordion-content">
+                                                    <?php echo $udare; ?>
+                                                </div>
                                             </div>
-                                            <span class="toggle-icon"><img
-                                                        src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-tabs.svg"
-                                                        alt=""></span>
-                                        </div>
-                                        <div class="accordion-content">
-                                            <p>
-                                                Selectarea locului pentru plantare Hortensia nu este o planta foarte
-                                                pretentioasa, comparativ cu alte plante de gradina sau apartament.
-                                                Insa are nevoie de anumite conditii de clima pentru a creste
-                                                viguroasa si a inflori frumos. Primul pas in acest sens este gasirea
-                                                locului ideal pentru a o planta. Arbustul de hortensie iubeste
-                                                lumina soarelui, insa numai dimineata, cand nu arde cu toata
-                                                puterea.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <div class="accordion-header">
-                                            <div class="quest d-flex gap-3">
-                                                <img src="/wp-content/uploads/2025/04/earth-farm-farming-svgrepo-com-1.svg" alt="">
-                                                <h4>Udarea</h4>
+                                        <?php endif; ?>
+
+                                        <?php if ($sol): ?>
+                                            <div class="accordion-item">
+                                                <div class="accordion-header">
+                                                    <div class="quest d-flex gap-3">
+                                                        <img src="/wp-content/uploads/2025/04/earth-farm-farming-svgrepo-com-1.svg"
+                                                             alt="">
+                                                        <h4>Selectarea solului</h4>
+                                                    </div>
+                                                    <span class="toggle-icon">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-tabs.svg"
+                                         alt="">
+                                </span>
+                                                </div>
+                                                <div class="accordion-content">
+                                                    <?php echo $sol; ?>
+                                                </div>
                                             </div>
-                                            <span class="toggle-icon"><img
-                                                        src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-tabs.svg"
-                                                        alt=""></span>
-                                        </div>
-                                        <div class="accordion-content">
-                                            <p>
-                                                Selectarea locului pentru plantare Hortensia nu este o planta foarte
-                                                pretentioasa, comparativ cu alte plante de gradina sau apartament.
-                                                Insa are nevoie de anumite conditii de clima pentru a creste
-                                                viguroasa si a inflori frumos. Primul pas in acest sens este gasirea
-                                                locului ideal pentru a o planta. Arbustul de hortensie iubeste
-                                                lumina soarelui, insa numai dimineata, cand nu arde cu toata
-                                                puterea.
-                                            </p>
-                                        </div>
+                                        <?php endif; ?>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
         <?php endwhile; ?>
     </section>
-
-    <section class="new_products">
-        <div class="container">
-            <div class="block_title">
-                <h2>Produse noi</h2>
-                <div class="d-flex justify-content-between align-items-end">
-                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                        unknown.</p>
-                    <div class="arrows_slider">
-                        <div class="new-prev swiper-button-prev"></div>
-                        <div class="new-next swiper-button-next"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="products_slider swiper">
-                <div class="swiper-wrapper">
-                    <div class="product_item swiper-slide">
-                        <div class="image_product">
-                            <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                                 alt="">
-                            <div class="overlay">
-                                <span>Vezi mai mult</span>
-                            </div>
-                        </div>
-                        <h5 class="text-center">Paeonia Catharina Fontyn</h5>
-                        <div class="price_list d-flex justify-content-center align-items-center">
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/shopping.svg"
-                                     alt="">
-                            </a>
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/heart1.svg" alt="">
-                            </a>
-                            <span>700 MDL</span>
-                        </div>
-                    </div>
-                    <div class="product_item swiper-slide">
-                        <div class="image_product">
-                            <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                                 alt="">
-                            <div class="overlay">
-                                <span>Vezi mai mult</span>
-                            </div>
-                        </div>
-                        <h5 class="text-center">Paeonia Catharina Fontyn</h5>
-                        <div class="price_list d-flex justify-content-center align-items-center">
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/shopping.svg"
-                                     alt="">
-                            </a>
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/heart1.svg" alt="">
-                            </a>
-                            <span>700 MDL</span>
-                        </div>
-                    </div>
-                    <div class="product_item swiper-slide">
-                        <div class="image_product">
-                            <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                                 alt="">
-                            <div class="overlay">
-                                <span>Vezi mai mult</span>
-                            </div>
-                        </div>
-                        <h5 class="text-center">Paeonia Catharina Fontyn</h5>
-                        <div class="price_list d-flex justify-content-center align-items-center">
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/shopping.svg"
-                                     alt="">
-                            </a>
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/heart1.svg" alt="">
-                            </a>
-                            <span>700 MDL</span>
-                        </div>
-                    </div>
-                    <div class="product_item swiper-slide">
-                        <div class="image_product">
-                            <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                                 alt="">
-                            <div class="overlay">
-                                <span>Vezi mai mult</span>
-                            </div>
-                        </div>
-                        <h5 class="text-center">Paeonia Catharina Fontyn</h5>
-                        <div class="price_list d-flex justify-content-center align-items-center">
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/shopping.svg"
-                                     alt="">
-                            </a>
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/heart1.svg" alt="">
-                            </a>
-                            <span>700 MDL</span>
-                        </div>
-                    </div>
-                    <div class="product_item swiper-slide">
-                        <div class="image_product">
-                            <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                                 alt="">
-                            <div class="overlay">
-                                <span>Vezi mai mult</span>
-                            </div>
-                        </div>
-                        <h5 class="text-center">Paeonia Catharina Fontyn</h5>
-                        <div class="price_list d-flex justify-content-center align-items-center">
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/shopping.svg"
-                                     alt="">
-                            </a>
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/heart1.svg" alt="">
-                            </a>
-                            <span>700 MDL</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact_sec mg-100">
-        <div class="container">
-            <div class="row gy-0 gx-0 justify-content-between align-items-center">
-                <div class="col-md-6">
-                    <h2 class="fw-bold">Lorem Ipsum has been the industry's standard</h2>
-                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                        printer
-                        took a galley of type and scrambled it to make.</p>
-                </div>
-                <div class="col-md-6">
-                    <div class="d-flex gap-4 justify-content-end">
-                        <a class="btn main_button whatupp" href="#"><img
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.svg" alt="">
-                            Whatupp</a>
-                        <a class="btn main_button phone" href="#"><img
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/phone2.svg" alt="">
-                            Phone
-                            call</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="gallery_home mg-100">
-        <div class="container">
-            <div class="footer_slider swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                             alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                             alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                             alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                             alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                             alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                             alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                             alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                             alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                             alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg"
-                             alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+<?php get_template_part('templates/new_products'); ?>
+<?php get_template_part('templates/contact-block'); ?>
+<?php get_template_part('templates/slaider-galerie'); ?>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const minusBtn = document.querySelector(".minus");
