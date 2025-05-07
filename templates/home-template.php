@@ -34,8 +34,48 @@ get_header();
     </div>
 </div>
 
-
-<?php get_template_part('templates/delivery_section'); ?>
+<section class="delivery_section mg-100">
+    <div class="container">
+        <div class="delivery_content">
+            <div class="delivery_item">
+                <div class="img_delivery">
+                    <img src="/wp-content/uploads/2025/04/free-delivery-300x300-1.png" alt="">
+                </div>
+                <div class="description">
+                    <h5 class="fw-bold">Livrare rapidă</h5>
+                    <p>în Chișinău</p>
+                </div>
+            </div>
+            <div class="delivery_item">
+                <div class="img_delivery">
+                    <img src="/wp-content/uploads/2025/04/free-delivery-300x300-1.png" alt="">
+                </div>
+                <div class="description">
+                    <h5 class="fw-bold">Achitarea</h5>
+                    <p>la livrare</p>
+                </div>
+            </div>
+            <div class="delivery_item">
+                <div class="img_delivery">
+                    <img src="/wp-content/uploads/2025/04/free-delivery-300x300-1.png" alt="">
+                </div>
+                <div class="description">
+                    <h5 class="fw-bold">Reduceri</h5>
+                    <p>de volum</p>
+                </div>
+            </div>
+            <div class="delivery_item">
+                <div class="img_delivery">
+                    <img src="/wp-content/uploads/2025/04/free-delivery-300x300-1.png" alt="">
+                </div>
+                <div class="description">
+                    <h5 class="fw-bold">Program</h5>
+                    <p>24 / 7 / 365</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="all_products">
     <div class="block_title">
@@ -67,11 +107,11 @@ get_header();
                                 echo '</a>';
                             }
                             ?>
-                            <div class="overlay">
-                                <a href="<?php the_permalink(); ?>">
+                            <a href="<?php the_permalink(); ?>">
+                                <div class="overlay">
                                     <span>Vezi mai mult</span>
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                         </div>
                         <h5 class="text-center">
                             <a class="text-decoration-none text-black fw-bold"
@@ -275,8 +315,66 @@ get_header();
     </div>
 </section>
 
-<?php get_template_part('templates/contact-block'); ?>
-<?php get_template_part('templates/slaider-galerie'); ?>
+<section class="contact_sec mg-100">
+    <div class="container">
+        <div class="row gy-0 gx-0 justify-content-between align-items-center">
+            <div class="col-md-6">
+                <h2 class="fw-bold">Lorem Ipsum has been the industry's standard</h2>
+                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                    took a galley of type and scrambled it to make.</p>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex gap-4 justify-content-end">
+                    <a class="btn main_button whatupp" href="#"><img
+                                src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.svg" alt="">
+                        Whatupp</a>
+                    <a class="btn main_button phone" href="#"><img
+                                src="<?php echo get_template_directory_uri(); ?>/assets/images/phone2.svg" alt=""> Phone
+                        call</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="gallery_home">
+    <div class="container">
+        <div class="footer_slider swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/wp-content/uploads/2025/04/85ac7a1f22e0573d9303ed2f1ce507b5e2e05304-scaled.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="mg-100"></section>
 
