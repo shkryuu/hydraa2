@@ -9,7 +9,7 @@ get_header('shop');
     <div class="woocommerce-header-top">
         <div class="woocommerce-breadcrumbs">
             <div class="breadcrumb_sec">
-                <?php woocommerce_breadcrumb(); ?>
+            <?php woocommerce_breadcrumb(); ?>
             </div>
         </div>
         <div class="woocommerce-sorting">
@@ -66,13 +66,11 @@ get_header('shop');
         <div class="products_content-produse">
             <?php
             $current_term = get_queried_object();
-            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
             $args = array(
                 'post_type' => 'product',
-                'posts_per_page' => 3,
-                'paged' => $paged,
-                'post_status' => 'publish'
+                'posts_per_page' => 8,
+                'post_status' => 'publish',
             );
 
             if (is_product_category() && $current_term instanceof WP_Term) {
@@ -141,56 +139,14 @@ get_header('shop');
                 <?php
                 endwhile;
                 wp_reset_postdata();
-
             else :
                 echo '<p>Nu au fost găsite produse.</p>';
             endif;
             ?>
-
-            <div class="d-flex">
-                <?php
-                // Afișare: Se afișează X–Y din Z produse
-                $total_products = $products->found_posts;
-                $start = ($paged - 1) * 9 + 1;
-                $end = min($paged * 9, $total_products);
-                echo '<div class="d-flex justify-content-between align-items-center mt-4">';
-                echo '<div class="pagination-count">Se afișează ' . $start . '–' . $end . ' din ' . $total_products . ' de produse</div>';
-
-                // Afișare paginare
-                echo '<div class="pagination">';
-                echo paginate_links(array(
-                    'total' => $products->max_num_pages,
-                    'current' => $paged,
-                    'mid_size' => 2,
-                    'prev_text' => '&laquo;',
-                    'next_text' => '&raquo;',
-                    'type' => 'list'
-                ));
-                echo '</div>';
-                echo '</div>';
-                ?>
-            </div>
         </div>
     </div>
 </main>
-<style>
-    .pagination {
-        display: flex;
-        gap: 0.5rem;
-    }
 
-    .pagination .page-numbers {
-        display: flex;
-        padding: 6px 12px;
-        border-radius: 6px;
-        text-decoration: none;
-        color: #000;
-        background: #f0f0f0;
-    }
+<?php get_template_part('template-parts/gallery-template'); ?>
 
-    .pagination .current {
-        background: #6a68d1;
-        color: #fff;
-    }
-
-</style>
+<?php get_footer() ?>

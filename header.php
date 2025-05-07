@@ -21,19 +21,11 @@
                 ?>
                 <img class="header_logo" src="<?php echo $image[0]; ?>" alt="">
             </a>
-            <button class="navbar__toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-            </button>
         </div>
 
         <div class="navbar__menu__items">
             <?php
-            wp_nav_menu(
-                array(
-                    'theme_location' => 'primary-menu',
-                )
-            );
+            wp_nav_menu(['theme_location' => 'primary-menu']);
             ?>
         </div>
         <?php $cart_count = wp_kses_data(WC()->cart->get_cart_contents_count()); ?>
@@ -73,8 +65,12 @@
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/shopping.svg" alt="Cart">
                 <div class="count__cart"><?php echo WC()->cart->get_cart_contents_count(); ?></div>
             </a>
+            <button class="navbar__toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-
     </div>
 </div>
 
