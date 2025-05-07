@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e85f3e64-5d34-48cf-a213-cf82ca35f9b6" name="Barbu Site" url="http://194.180.191.35">
+        <fileTransfer host="89.41.176.247" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="58436484-fade-48a3-a756-f241771506a4" name="Smarket" url="http://ftp.smarketinglab.eu">
+        <fileTransfer host="ftp.smarketinglab.eu" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="6fa38b82-9a6c-48a5-bc30-7f2f2fb9b85d" name="DentoneOF" url="http://dentone.ro">
+        <fileTransfer host="dentone.ro" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="0dc112f0-2cde-4f70-ac23-93b9006dc785" name="VCVCV" url="http://81.88.53.131">
+        <fileTransfer host="81.88.53.131" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="ff49d4cd-3f1b-4d66-9f47-a9cca81658cb" name="VCVOFF" url="http://81.88.53.131">
+        <fileTransfer host="81.88.53.131" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
